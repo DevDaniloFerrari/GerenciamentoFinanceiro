@@ -5,6 +5,7 @@
  */
 package telas;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import repositorios.UsuarioRepositorio;
@@ -185,7 +186,7 @@ public class Login extends javax.swing.JFrame {
             int senha = Integer.parseInt(campo_senha.getText());
             
             if(usuarioRepositorio.validar(nome, senha)){
-                Login.setIdUser(usuarioRepositorio.obter(nome, HEIGHT).getInt("id"));
+                Login.setIdUser(usuarioRepositorio.obter(nome, senha).getInt("id"));
                 new TelaPrincipal().setVisible(true);
                 this.setVisible(false);
             }else{
@@ -193,7 +194,7 @@ public class Login extends javax.swing.JFrame {
             }
             
         }catch(SQLException e){
-
+            System.out.println(e.getMessage());
         }
 
     }//GEN-LAST:event_btn_entrarActionPerformed
