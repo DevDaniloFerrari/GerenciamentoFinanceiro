@@ -8,6 +8,7 @@ package telas;
 
 import classes.Cartao;
 import classes.Compra;
+import classes.Constantes;
 import conexao.FabricaDeConexao;
 import java.util.ArrayList;
 import java.sql.ResultSet;
@@ -47,7 +48,7 @@ public class CadastroCompra extends javax.swing.JInternalFrame {
         if(adicionar.isEmpty()){
             adicionar.add(c);
         }
-        ResultSet rs = conexao.obterResultSet("SELECT `nome` FROM `cartao` WHERE `id_usuario` = '"+Login.getIdUser()+"';");
+        ResultSet rs = conexao.obterResultSet("SELECT `nome` FROM `cartao` WHERE `id_usuario` = '"+Constantes.getID_USUARIO()+"';");
         boolean aceita=true;
         
         for(Cartao card : listaCartao){
@@ -401,7 +402,7 @@ public class CadastroCompra extends javax.swing.JInternalFrame {
                 if(but_entrada.isSelected()){
                     Double valor = (double)spn_entrada.getValue();
                     con.executarQuery("INSERT INTO `compras` (`codigo`,`id_usuario`,`form_pagamento`,"
-                        + "`nome`,`valor`,`vezes`,`parc_rest`,`data`) VALUES ('"+codigo+"','"+Login.getIdUser()+
+                        + "`nome`,`valor`,`vezes`,`parc_rest`,`data`) VALUES ('"+codigo+"','"+Constantes.getID_USUARIO()+
                         "','"+combo_forma_pg.getSelectedIndex()+"','"+txt_nome.getText()+"','"
                         +valor+"','"+spn_vezes.getValue()+"','"+v+"','"+
                         spn_ano.getValue()+"-"+spn_mes.getValue()+"-"+spn_dia.getValue()+"')");
@@ -410,7 +411,7 @@ public class CadastroCompra extends javax.swing.JInternalFrame {
 
                 if(spn_vezes.getValue().equals(1)){
                     con.executarQuery("INSERT INTO `compras` (`codigo`,`id_usuario`,`form_pagamento`,"
-                        + "`nome`,`valor`,`vezes`,`parc_rest`,`data`) VALUES ('"+codigo+"','"+Login.getIdUser()+
+                        + "`nome`,`valor`,`vezes`,`parc_rest`,`data`) VALUES ('"+codigo+"','"+Constantes.getID_USUARIO()+
                         "','"+combo_forma_pg.getSelectedIndex()+"','"+txt_nome.getText()+"','"
                         +spn_valor.getValue()+"','"+spn_vezes.getValue()+"','"+v+"','"+
                         spn_ano.getValue()+"-"+spn_mes.getValue()+"-"+spn_dia.getValue()+"')");
@@ -428,7 +429,7 @@ public class CadastroCompra extends javax.swing.JInternalFrame {
                             valor += porc;
                         }
                         con.executarQuery("INSERT INTO `compras` (`codigo`,`id_usuario`,`form_pagamento`,"
-                            + "`nome`,`valor`,`vezes`,`parc_rest`,`data`) VALUES ('"+codigo+"','"+Login.getIdUser()+
+                            + "`nome`,`valor`,`vezes`,`parc_rest`,`data`) VALUES ('"+codigo+"','"+Constantes.getID_USUARIO()+
                             "','"+combo_forma_pg.getSelectedIndex()+"','"+txt_nome.getText()+"','"
                             +(valor)+"','"+spn_vezes.getValue()+"','"+v+"','"+
                             ano+"-"+mes+"-"+spn_dia.getValue()+"')");

@@ -8,7 +8,6 @@ import java.sql.Statement;
 
 public class FabricaDeConexao{
     
-    //Atributos
     
     private Connection con = null;
     
@@ -21,7 +20,6 @@ public class FabricaDeConexao{
     private String dataBasePrefix =  null;
     private String dataBasePort = null;
     
-    //Construtor
     
     public FabricaDeConexao(){
         
@@ -37,9 +35,8 @@ public class FabricaDeConexao{
         this.url = this.dataBasePrefix+this.hostName+":"+this.dataBasePort+"/"+this.dataBaseName+"?verifyServerCertificate=false&useSSL=true";
     }
     
-    //Método para Abrir a Conexão
     
-    public Connection obterConexao(){
+    private Connection obterConexao(){
         try{
             if(con == null){
                 Class.forName(jdbcDriver);
@@ -66,8 +63,6 @@ public class FabricaDeConexao{
         }
     }
     
-    //Método para Obter ResultSet
-    
     public ResultSet obterResultSet(String query){
         Connection con = this.obterConexao();
         Statement st = null;
@@ -78,12 +73,9 @@ public class FabricaDeConexao{
         }catch(SQLException e){
             
         }
-        //this.fecharConexao();
         return rs;
     }
     
-    
-    //Método para QUERY
     
     public void executarQuery(String query){
         Connection con = this.obterConexao();

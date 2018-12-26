@@ -5,6 +5,7 @@
  */
 package telas;
 
+import classes.Constantes;
 import javax.swing.JOptionPane;
 import conexao.FabricaDeConexao;
 import java.sql.ResultSet;
@@ -141,7 +142,7 @@ public class CadastroCartao extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Não pode haver campos vazios!","Aviso",2);
         }else{
             int n=0;
-            ResultSet rs = con.obterResultSet("SELECT MAX(`numero_seq`) FROM `cartao` WHERE `id_usuario` = '"+Login.getIdUser()+"';");
+            ResultSet rs = con.obterResultSet("SELECT MAX(`numero_seq`) FROM `cartao` WHERE `id_usuario` = '"+Constantes.getID_USUARIO()+"';");
             try{
                 if(!rs.next()){
                     n=1;
@@ -155,7 +156,7 @@ public class CadastroCartao extends javax.swing.JInternalFrame {
             System.out.println("numero: "+n);
             
             con.obterResultSet("INSERT INTO `cartao` (`id_usuario`,`nome`,`bandeira`,`limite`,`numero_seq`) VALUES ('"+
-                    Login.getIdUser()+"','"+txtCartao.getText()+"','"+txtBandeira.getText()+"','"+spnLimite.getValue()+"',"
+                    Constantes.getID_USUARIO()+"','"+txtCartao.getText()+"','"+txtBandeira.getText()+"','"+spnLimite.getValue()+"',"
                             + "'"+n+"')");
         }
         
